@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Persistence;
 public class ApiEscuelaContext : DbContext
 {
-    public ApiEscuelaContext(DbContextOptions<ApiEscuelaContext> options) : base(options)
+     public ApiEscuelaContext(DbContextOptions<ApiEscuelaContext> options) : base(options)
     {
     }
     public DbSet<Class> Classes { get; set; }
