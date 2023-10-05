@@ -114,7 +114,7 @@ namespace Persistence
                                     Id = item.Id,
                                     Name = item.Name,
                                     TeacherIdFk=item.TeacherIdFk,
-                                    StudentIdfk=item.StudentIdfk
+                                    StudentIdFk=item.StudentIdFk
                                 });
                             }
 

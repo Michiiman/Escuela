@@ -18,10 +18,6 @@ namespace Persistencia.Data.Configuration
             builder.Property(e => e.Name)
             .HasColumnName("ClassName")
             .IsRequired();
-
-            builder.HasOne(p => p.Student)
-            .WithMany(p => p.Classes)
-            .HasForeignKey(p => p.StudentIdFk);
         }
     }
 }

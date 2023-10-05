@@ -22,9 +22,9 @@ namespace Persistencia.Data.Configuration
             .WithMany(p => p.Subjects)
             .HasForeignKey(p => p.TeacherIdFk);
 
-            builder.HasOne(p => p.Class)
+            builder.HasOne(p => p.Student)
             .WithMany(p => p.Subjects)
-            .HasForeignKey(p => p.ClassIdFk);
+            .HasForeignKey(p => p.StudentIdFk);
         }
     }
 }
