@@ -17,7 +17,7 @@ public class ApiEscuelaContextSeed
 
             if (!context.Roles.Any())
             {
-                using (var readerRole = new StreamReader(ruta + @"/Data/Csv/Role.csv"))
+                using (var readerRole = new StreamReader("../Persistence/Data/Csv/Role.csv"))
                 {
                     using (var csv = new CsvReader(readerRole, CultureInfo.InvariantCulture))
                     {
@@ -29,7 +29,7 @@ public class ApiEscuelaContextSeed
             }
             if (!context.Classes.Any())
             {
-                using (var readerClass = new StreamReader(ruta + @"/Data/Csv/Class.csv"))
+                using (var readerClass = new StreamReader("../Persistence/Data/Csv/Class.csv"))
                 {
                     using (var csv = new CsvReader(readerClass, CultureInfo.InvariantCulture))
                     {
@@ -41,7 +41,7 @@ public class ApiEscuelaContextSeed
             }
             if (!context.Users.Any())
             {
-                using (var readerUser = new StreamReader(ruta + @"/Data/Csv/User.csv"))
+                using (var readerUser = new StreamReader("../Persistence/Data/Csv/User.csv"))
                 {
                     using (var csv = new CsvReader(readerUser, CultureInfo.InvariantCulture))
                     {
@@ -53,7 +53,7 @@ public class ApiEscuelaContextSeed
             }
             if (!context.Teachers.Any())
             {
-                using (var readerTeacher = new StreamReader(ruta + @"/Data/Csv/Teacher.csv"))
+                using (var readerTeacher = new StreamReader("../Persistence/Data/Csv/Teacher.csv"))
                 {
                     using (var csv = new CsvReader(readerTeacher, CultureInfo.InvariantCulture))
                     {
@@ -65,7 +65,7 @@ public class ApiEscuelaContextSeed
             }
             if (!context.Students.Any())
             {
-                using (var readerStudents = new StreamReader(ruta + @"\Data\Csv/Student.csv"))
+                using (var readerStudents = new StreamReader("../Persistence/Data/Csv/Student.csv"))
                 {
                     using (var csv = new CsvReader(readerStudents, new CsvConfiguration(CultureInfo.InvariantCulture)
                     {
@@ -96,7 +96,7 @@ public class ApiEscuelaContextSeed
             }
             if (!context.Subjects.Any())
             {
-                using (var readerSubject = new StreamReader(ruta + @"\Data\Csv/Subject.csv"))
+                using (var readerSubject = new StreamReader("../Persistence/Data/Csv/Subject.csv"))
                 {
                     using (var csv = new CsvReader(readerSubject, new CsvConfiguration(CultureInfo.InvariantCulture)
                     {
