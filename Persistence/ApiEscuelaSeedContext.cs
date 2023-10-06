@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Persistence;
 
-public class ApiEscuelaSeedContext
+public class ApiEscuelaContextSeed
 {
     public static async Task SeedAsync(ApiEscuelaContext context, ILoggerFactory loggerFactory)
     {

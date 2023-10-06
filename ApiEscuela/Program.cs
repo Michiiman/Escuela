@@ -35,8 +35,8 @@ using (var scope = app.Services.CreateScope())
 	{
 		var context = services.GetRequiredService<ApiEscuelaContext>();
 		await context.Database.MigrateAsync();
-		await ApiEscuelaSeedContext.SeedRolesAsync(context,loggerFactory);
-		await ApiEscuelaSeedContext.SeedAsync(context,loggerFactory);
+		await ApiEscuelaContextSeed.SeedRolesAsync(context,loggerFactory);
+		await ApiEscuelaContextSeed.SeedAsync(context,loggerFactory);
 	}
 	catch (Exception ex)
 	{
