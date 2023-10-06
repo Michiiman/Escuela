@@ -11,4 +11,4 @@ namespace Domain.Entities
         public Subject Subject { get; set; }
         public float Score { get; set; }
     }
-}
+}     

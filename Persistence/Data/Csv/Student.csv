@@ -1,4 +1,4 @@
-Id,Name,LastName,ClassIdFk
+Id,Name,Lastname,ClassIdFk
 1,John,Doe,1
 2,Alice,Smith,1
 3,Michael,Johnson,1

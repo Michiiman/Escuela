@@ -10,8 +10,8 @@ using Persistence;
 namespace Persistence.Data.Migrations
 {
     [DbContext(typeof(ApiEscuelaContext))]
-    [Migration("20231006190441_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20231006203908_InitialCreateMig")]
+    partial class InitialCreateMig
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

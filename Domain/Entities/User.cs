@@ -15,4 +15,4 @@ public class User:BaseEntity
     public Teacher Teacher { get; set; }
     public ICollection<Role> Roles { get; set; } = new HashSet<Role>();
     public ICollection<UserRole> UserRoles { get; set; }
-}
+}    
