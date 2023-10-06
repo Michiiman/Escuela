@@ -1,17 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Domain.Entities;
+using Domain.Interfaces;
+using Persistence;
 
-namespace Application.Repository
+namespace Application.Repository;
+
+public class RoleRepository : GenericRepository<Role>, IRoleRepository
 {
-    public class RoleRepository
-    {
-        
-    }
+    public RoleRepository(ApiEscuelaContext context) : base(context)
+    {}
 }
-/*dotnet ef database update --project ./Persistence/ --startup-project ./ApiEscuela/
- */
-
-/* 
- */
