@@ -11,4 +11,4 @@ public class Teacher:BaseEntity
     public ICollection<Subject> Subjects { get; set; }
     public User User { get; set; }
     
-}
+}  

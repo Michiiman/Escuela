@@ -10,7 +10,7 @@ using Persistence;
 namespace Persistence.Data.Migrations
 {
     [DbContext(typeof(ApiEscuelaContext))]
-    [Migration("20231006020642_InitialCreateMig")]
+    [Migration("20231006203908_InitialCreateMig")]
     partial class InitialCreateMig
     {
         /// <inheritdoc />
