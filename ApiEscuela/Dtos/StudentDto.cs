@@ -13,5 +13,5 @@ public class StudentDto
     public int ClassIdFk { get; set; }
     public ClassDto Class { get; set; }
     public UserDto User { get; set; }
-    public List<SubjectDto> Subjects {get; set;}
+
 }
