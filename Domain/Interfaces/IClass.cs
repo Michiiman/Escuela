@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Domain.Entities;
 
 namespace Domain.Interfaces;
-public interface IClassRepository:IGenericRepository<Class>
+public interface IClass : IGenericRepository<Class>
 {
-    
+
 }

@@ -6,7 +6,7 @@ using Domain.Entities;
 
 namespace Domain.Interfaces
 {
-    public interface ISubjectRepository:IGenericRepository<Subject>
+    public interface ISubject:IGenericRepository<Subject>
     {
         
     }

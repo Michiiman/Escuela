@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Application.Repository
 {
-    public class ClassRepository:GenericRepository<Class>, IClassRepository
+    public class ClassRepository:GenericRepository<Class>, IClass
     {
         protected readonly ApiEscuelaContext _context;
         public ClassRepository(ApiEscuelaContext context) : base(context)
@@ -14,8 +14,8 @@ namespace Application.Repository
         }
     public override async Task<IEnumerable<Class>> GetAllAsync()
     {
-        return await _context.Classes.
-        ToListAsync();
+        return await _context.Classes
+        .ToListAsync();
     }
     }
 }

@@ -7,7 +7,7 @@ using Domain.Interfaces;
 using Persistence;
 
 namespace Application.Repository;
-public class StudentRepository:GenericRepository<Student>, IStudentRepository
+public class StudentRepository:GenericRepository<Student>, IStudent
 {
     public StudentRepository(ApiEscuelaContext context) : base(context){}
 }

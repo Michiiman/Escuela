@@ -6,7 +6,7 @@ using Domain.Entities;
 
 namespace Domain.Interfaces
 {
-    public interface ITeacherRepository:IGenericRepository<Teacher>
+    public interface ITeacher:IGenericRepository<Teacher>
     {
         
     }

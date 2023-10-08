@@ -8,7 +8,7 @@ using Persistence;
 
 namespace Application.Repository
 {
-    public class TeacherRepository: GenericRepository<Teacher>, ITeacherRepository
+    public class TeacherRepository: GenericRepository<Teacher>, ITeacher
     {
         public TeacherRepository(ApiEscuelaContext context):base(context){}
     }

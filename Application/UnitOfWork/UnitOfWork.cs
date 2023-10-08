@@ -22,7 +22,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         context = _context;
     }
 
-    public IClassRepository Classes
+    public IClass Classes
     {
         get
         {
@@ -33,7 +33,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
             return _classes;
         }
     }
-    public IGradeRepository Grades
+    public IGrade Grades
     {
         get
         {
@@ -44,7 +44,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
             return _grades;
         }
     }
-    public IRoleRepository Roles
+    public IRole Roles
     {
         get
         {
@@ -55,7 +55,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
             return _roles;
         }
     }
-    public IStudentRepository Students
+    public IStudent Students
     {
         get
         {
@@ -66,7 +66,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
             return _students;
         }
     }
-    public ISubjectRepository Subjects
+    public ISubject Subjects
     {
         get
         {
@@ -77,7 +77,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
             return _subjects;
         }
     }
-    public ITeacherRepository Teachers
+    public ITeacher Teachers
     {
         get
         {
@@ -88,7 +88,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
             return _teachers;
         }
     }
-    public IUserRepository Users
+    public IUser Users
     {
         get
         {

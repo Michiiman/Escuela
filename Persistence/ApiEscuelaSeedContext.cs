@@ -27,7 +27,7 @@ public class ApiEscuelaContextSeed
                     }
                 }
             }
-             if (!context.Teachers.Any())
+            if (!context.Teachers.Any())
             {
                 using (var readerStudents = new StreamReader("../Persistence/Data/Csv/Teacher.csv"))
                 {

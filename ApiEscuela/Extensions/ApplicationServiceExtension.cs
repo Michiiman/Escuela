@@ -19,10 +19,6 @@ public static class ApplicationServiceExtension
         });
     public static void AddAplicacionServices(this IServiceCollection services)
         {
-            //In case to need a Repo that isn't contained in UnitOfWork, remove comment
-            //Services.AddScoped<IpaisInterface,PaisRepository>();
-            //Services.AddScoped<ITipoPersona,TipoPeronsaRepository>();
-            
             services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 }

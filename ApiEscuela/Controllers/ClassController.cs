@@ -21,18 +21,16 @@ public class ClassController : BaseApiController
         this.unitOfWork = unitOfWork;
         this.mapper = mapper;
     }
+    
+
+    //Metodos Basicos
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    /*public async Task<ActionResult<IEnumerable<ClassDto>>> Get()
+    public async Task<ActionResult<IEnumerable<ClassDto>>> Get()
     {
         var entidad = await unitOfWork.Classes.GetAllAsync();
-        //return Ok(entidad);
         return mapper.Map<List<ClassDto>>(entidad);
-    }*/
-    public async Task<ActionResult<IEnumerable<Class>>> Get()
-    {
-        var entidad = await unitOfWork.Classes.GetAllAsync();
-        return Ok(entidad);
     }
+
 }

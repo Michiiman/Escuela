@@ -6,7 +6,7 @@ using Domain.Entities;
 
 namespace Domain.Interfaces
 {
-    public interface IGradeRepository:IGenericRepository<Grade>
+    public interface IGrade:IGenericRepository<Grade>
     {
         
     }
