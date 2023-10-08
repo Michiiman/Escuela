@@ -17,7 +17,7 @@ public class ApiEscuelaContextSeed
 
             if (!context.Roles.Any())
             {
-                using (var readerRole = new StreamReader(ruta + @"/Data/Csv/Role.csv"))
+                using (var readerRole = new StreamReader(ruta + @"persistence/Data/Csv/Role.csv"))
                 {
                     using (var csv = new CsvReader(readerRole, CultureInfo.InvariantCulture))
                     {
