@@ -55,3 +55,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+/*dotnet ef database update --project ./Persistence/ --startup-project ./Api/
+ */
