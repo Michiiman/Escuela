@@ -105,9 +105,7 @@ public class ApiEscuelaContextSeed
                             {
                                 Id = item.Id,
                                 Email = item.Email,
-                                Password = item.Password,
-                                StudentIdFk = item.StudentIdFk,
-                                TeacherIdFk = item.TeacherIdFk
+                                Password = item.Password
 
                             });
                         }

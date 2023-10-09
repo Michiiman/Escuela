@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Persistence.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreateMig : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -45,19 +45,25 @@ namespace Persistence.Data.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Teacher",
+                name: "User",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true)
+                    Email = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Lastname = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    Password = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    RoleId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Teacher", x => x.Id);
+                    table.PrimaryKey("PK_User", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_User_Role_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "Role",
+                        principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -71,17 +77,46 @@ namespace Persistence.Data.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Lastname = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    ClassIdFk = table.Column<int>(type: "int", nullable: false)
+                    ClassIdFk = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Student", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Student_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Student_class_ClassIdFk",
                         column: x => x.ClassIdFk,
                         principalTable: "class",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Teacher",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Lastname = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    UserId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Teacher", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Teacher_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -115,36 +150,6 @@ namespace Persistence.Data.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "User",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Email = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Password = table.Column<byte[]>(type: "varbinary(255)", maxLength: 255, nullable: false),
-                    StudentIdFk = table.Column<int>(type: "int", nullable: false),
-                    TeacherIdFk = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_User", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_User_Student_StudentIdFk",
-                        column: x => x.StudentIdFk,
-                        principalTable: "Student",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_User_Teacher_TeacherIdFk",
-                        column: x => x.TeacherIdFk,
-                        principalTable: "Teacher",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
                 name: "Grade",
                 columns: table => new
                 {
@@ -165,31 +170,6 @@ namespace Persistence.Data.Migrations
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
-                name: "userRol",
-                columns: table => new
-                {
-                    UserIdFk = table.Column<int>(type: "int", nullable: false),
-                    RoleIdFk = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_userRol", x => new { x.UserIdFk, x.RoleIdFk });
-                    table.ForeignKey(
-                        name: "FK_userRol_Role_RoleIdFk",
-                        column: x => x.RoleIdFk,
-                        principalTable: "Role",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_userRol_User_UserIdFk",
-                        column: x => x.UserIdFk,
-                        principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
             migrationBuilder.CreateIndex(
                 name: "IX_Grade_SubjectIdFk",
                 table: "Grade",
@@ -199,6 +179,11 @@ namespace Persistence.Data.Migrations
                 name: "IX_Student_ClassIdFk",
                 table: "Student",
                 column: "ClassIdFk");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Student_UserId",
+                table: "Student",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Subject_StudentIdFk",
@@ -211,21 +196,14 @@ namespace Persistence.Data.Migrations
                 column: "TeacherIdFk");
 
             migrationBuilder.CreateIndex(
-                name: "IX_User_StudentIdFk",
-                table: "User",
-                column: "StudentIdFk",
-                unique: true);
+                name: "IX_Teacher_UserId",
+                table: "Teacher",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_User_TeacherIdFk",
+                name: "IX_User_RoleId",
                 table: "User",
-                column: "TeacherIdFk",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_userRol_RoleIdFk",
-                table: "userRol",
-                column: "RoleIdFk");
+                column: "RoleId");
         }
 
         /// <inheritdoc />
@@ -235,16 +213,7 @@ namespace Persistence.Data.Migrations
                 name: "Grade");
 
             migrationBuilder.DropTable(
-                name: "userRol");
-
-            migrationBuilder.DropTable(
                 name: "Subject");
-
-            migrationBuilder.DropTable(
-                name: "Role");
-
-            migrationBuilder.DropTable(
-                name: "User");
 
             migrationBuilder.DropTable(
                 name: "Student");
@@ -254,6 +223,12 @@ namespace Persistence.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "class");
+
+            migrationBuilder.DropTable(
+                name: "User");
+
+            migrationBuilder.DropTable(
+                name: "Role");
         }
     }
 }

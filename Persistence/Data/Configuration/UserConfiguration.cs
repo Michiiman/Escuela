@@ -20,13 +20,6 @@ namespace Persistencia.Data.Configuration
             builder.Property(p => p.Email)
             .HasMaxLength(50);
 
-            builder.HasOne(p => p.Student)
-            .WithOne(p => p.User)
-            .HasForeignKey<User>(p => p.StudentIdFk);
-
-            builder.HasOne(p => p.Teacher)
-            .WithOne(p => p.User)
-            .HasForeignKey<User>(p => p.TeacherIdFk);
 
             builder.Property(p => p.Password)
             .HasMaxLength(255)
@@ -34,26 +27,6 @@ namespace Persistencia.Data.Configuration
             /* .HasConversion(
                 s => SHA256.HashData(Encoding.UTF8.GetBytes(s)),
                 s => Encoding.UTF8.GetString(SHA256.HashData(s))); */
-
-            builder
-            .HasMany(p=>p.Roles)
-            .WithMany(p=>p.Users)
-            .UsingEntity<UserRole>(
-            j=>j
-                .HasOne(pt=>pt.Role)
-                .WithMany(t=>t.UserRoles)
-                .HasForeignKey(pt=>pt.RoleIdFk),
-            j => j
-                .HasOne(pt => pt.User)
-                .WithMany(t => t.UserRoles)
-                .HasForeignKey(pt => pt.UserIdFk),
-            j => 
-            {
-                j.ToTable("userRol");
-                j.HasKey(t => new { t.UserIdFk, t.RoleIdFk});
-            });
-
-
         }
     }
 }

@@ -15,7 +15,7 @@ public class ApiEscuelaContext : DbContext
     public DbSet<Subject> Subjects{ get; set; }
     public DbSet<Teacher> Teachers{ get; set; }
     public DbSet<User> Users{ get; set; }
-    public DbSet<UserRole> UserRoles { get; set; }
+    //public DbSet<UserRole> UserRoles { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
