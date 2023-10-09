@@ -4,6 +4,7 @@ using Domain.Entities;
 using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace ApiEscuela.Controllers;
 
 public class UserController : BaseApiController
@@ -89,5 +90,9 @@ public class UserController : BaseApiController
         await unitOfWork.SaveAsync();
         return NoContent();
     }
+
+        
+
+    
 
 }

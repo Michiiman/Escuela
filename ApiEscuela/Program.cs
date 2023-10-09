@@ -60,7 +60,3 @@ app.MapControllers();
 
 app.Run();
 
-/*dotnet ef database update --project ./Persistence/ --startup-project ./Api/
- */
-/*dotnet ef database update --project ./Persistence/ --startup-project ./ApiEscuela/
- */

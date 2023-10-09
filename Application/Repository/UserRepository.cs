@@ -24,4 +24,7 @@ public class UserRepository : GenericRepository<User>, IUser
         .Include(p => p.Role)
         .FirstOrDefaultAsync(p => p.Id == id);
     }
+
+    
+    
 }
