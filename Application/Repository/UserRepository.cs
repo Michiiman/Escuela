@@ -25,6 +25,10 @@ public class UserRepository : GenericRepository<User>, IUser
         .FirstOrDefaultAsync(p => p.Id == id);
     }
 
-    
-    
+    public async Task<User> GetByEmailAsync(string email)
+    {
+        return await _context.Users
+            .FirstOrDefaultAsync(u => u.Email.ToLower() == email.ToLower());
+    }
+
 }

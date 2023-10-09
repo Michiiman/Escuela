@@ -1,11 +1,22 @@
-
 using ApiEscuela.Dtos;
+using AutoMapper;
+using Domain.Entities;
+using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace ApiEscuela.Controllers;
 
 public class LoginController : Controller
 {
+    private readonly IUnitOfWork unitOfWork;
+    private readonly IMapper mapper;
+
+    public LoginController(IUnitOfWork unitOfWork, IMapper mapper)
+    {
+        this.unitOfWork = unitOfWork;
+        this.mapper = mapper;
+    }
     [HttpPost("getTokenLogin")]
     public ActionResult GetTokenLogin([FromForm] string email, [FromForm] string password)
     {
@@ -14,12 +25,20 @@ public class LoginController : Controller
         return Ok(log.getTokenLogin(email, password));
     }
 
+
     [HttpPost("loginByToken")]
-    public ActionResult LoginByToken([FromBody] RegisterDto data)
+    public async Task<ActionResult> LoginByToken([FromBody] RegisterDto data)
     {
         Clases.Log.LogWrite($"LoginByToken: loginToken={data.LoginToken}");
         Clases.Login log = new Clases.Login();
-        string token = log.LoginByToken(data.LoginToken, data);
+        User ent = await unitOfWork.Users.GetByEmailAsync(data.Email); // Esperar la tarea
+
+        if (ent == null)
+        {
+            return BadRequest("Usuario no encontrado");
+        }
+
+        string token = log.LoginByToken(data.LoginToken, ent);
 
         switch (token)
         {
@@ -29,6 +48,31 @@ public class LoginController : Controller
             default: return Ok(token);
         }
     }
+    [HttpPost("getNotas")]
+    public async Task<ActionResult> GetNotas([FromForm] string token)
+    {
+        try
+        {
+            Clases.Log.LogWrite($"GetClientes: token={token}");
 
+            // Validar token
+            Clases.Login log = new Clases.Login();
+            if (!log.ValidarTokenUsuario(token))
+            {
+                return BadRequest("Token caducado o incorrecto");
+            }
+            // Ejecutar acción para obtener la lista de GradeDto
+            var notas = await unitOfWork.Grades.GetAllAsync();
+            Console.WriteLine(notas);
 
+            // Convertir la lista de GradeDto a JSON y devolverla como una respuesta OK
+            var notasDto = mapper.Map<List<GradeDto>>(notas);
+            return Ok(notasDto);  // Envolver las notasDto en un OkObjectResult
+        }
+        catch (Exception ex)
+        {
+            // Manejar errores y devolver una respuesta de error BadRequest con el mensaje de error
+            return BadRequest(ex.Message);
+        }
+    }
 }

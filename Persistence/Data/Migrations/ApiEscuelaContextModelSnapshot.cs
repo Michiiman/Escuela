@@ -150,10 +150,10 @@ namespace Persistence.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<byte[]>("Password")
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("varbinary(255)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<int>("RoleIdFk")
                         .HasColumnType("int");

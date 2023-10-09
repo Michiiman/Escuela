@@ -10,7 +10,7 @@ using Persistence;
 namespace Persistence.Data.Migrations
 {
     [DbContext(typeof(ApiEscuelaContext))]
-    [Migration("20231009052005_InitialCreateMig")]
+    [Migration("20231009093619_InitialCreateMig")]
     partial class InitialCreateMig
     {
         /// <inheritdoc />
@@ -153,10 +153,10 @@ namespace Persistence.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<byte[]>("Password")
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("varbinary(255)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<int>("RoleIdFk")
                         .HasColumnType("int");

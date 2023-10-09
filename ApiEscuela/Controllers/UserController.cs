@@ -1,4 +1,5 @@
 using ApiEscuela.Dtos;
+using ApiEscuela.Services;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Interfaces;
@@ -11,11 +12,13 @@ public class UserController : BaseApiController
 {
     private readonly IUnitOfWork unitOfWork;
     private readonly IMapper mapper;
+    private readonly IUserService _userService;
 
-    public UserController(IUnitOfWork unitOfWork, IMapper mapper)
+    public UserController(IUnitOfWork unitOfWork, IMapper mapper,IUserService userService)
     {
         this.unitOfWork = unitOfWork;
         this.mapper = mapper;
+        this._userService =userService;
     }
 
 
@@ -91,7 +94,12 @@ public class UserController : BaseApiController
         return NoContent();
     }
 
-        
+    [HttpPost("register")]
+    public async Task<ActionResult> RegisterAsync(PostEncryptDto model)
+    {
+        var result = await _userService.RegisterAsync(model);
+        return Ok(result);
+    }
 
     
 

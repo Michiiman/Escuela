@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Application.UnitOfWork;
 using Domain.Interfaces;
+using ApiEscuela.Services;
 
 namespace ApiEscuela.Extensions;
 public static class ApplicationServiceExtension
@@ -20,5 +21,7 @@ public static class ApplicationServiceExtension
     public static void AddAplicacionServices(this IServiceCollection services)
         {
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUserService, UserService>();
         }
+
 }
