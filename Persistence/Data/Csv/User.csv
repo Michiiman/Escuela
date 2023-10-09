@@ -1,1 +1,1 @@
-Id,Email,Password,StudentIdFk,TeacherIdFk
+Id,Email,Password,RoleIdFk

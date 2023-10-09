@@ -3,10 +3,25 @@ using Domain.Interfaces;
 using Persistence;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.Repository
+namespace Application.Repository;
+
+public class UserRepository : GenericRepository<User>, IUser
 {
-    public class UserRepository: GenericRepository<User>, IUser
+    protected readonly ApiEscuelaContext _context;
+    public UserRepository(ApiEscuelaContext context) : base(context)
     {
-        public UserRepository(ApiEscuelaContext context):base(context){}
+        _context = context;
+    }
+    public override async Task<IEnumerable<User>> GetAllAsync()
+    {
+        return await _context.Users
+            .Include(p => p.Role)
+            .ToListAsync();
+    }
+    public override async Task<User> GetByIdAsync(int id)
+    {
+        return await _context.Users
+        .Include(p => p.Role)
+        .FirstOrDefaultAsync(p => p.Id == id);
     }
 }

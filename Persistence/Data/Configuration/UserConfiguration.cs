@@ -19,14 +19,17 @@ namespace Persistencia.Data.Configuration
 
             builder.Property(p => p.Email)
             .HasMaxLength(50);
-
+            
+            builder.HasOne(p => p.Role)
+            .WithMany(p => p.Users)
+            .HasForeignKey(p => p.RoleIdFk);
 
             builder.Property(p => p.Password)
             .HasMaxLength(255)
-            .IsRequired();
-            /* .HasConversion(
+            .IsRequired()
+            .HasConversion(
                 s => SHA256.HashData(Encoding.UTF8.GetBytes(s)),
-                s => Encoding.UTF8.GetString(SHA256.HashData(s))); */
+                s => Encoding.UTF8.GetString(SHA256.HashData(s)));
         }
     }
 }

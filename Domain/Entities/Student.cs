@@ -10,6 +10,5 @@ public class Student:BaseEntity
     public string Lastname { get; set; }
     public int ClassIdFk { get; set; }
     public Class Class { get; set; }
-    public User User { get; set; }
     public ICollection<Subject> Subjects {get; set;}
 }     

@@ -9,6 +9,6 @@ public class Teacher:BaseEntity
     public string Name { get; set; }
     public string Lastname { get; set; }
     public ICollection<Subject> Subjects { get; set; }
-    public User User { get; set; }
+    
     
 }  

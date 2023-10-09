@@ -15,14 +15,12 @@ public class StudentRepository:GenericRepository<Student>, IStudent
     {
         return await _context.Students
             .Include(p=>p.Class)
-            .Include(p=>p.User)
             .ToListAsync();
     }
         public override async Task<Student> GetByIdAsync(int id)
     {
         return await _context.Students
         .Include(p=>p.Class)
-        .Include(p=>p.User)
         .FirstOrDefaultAsync(p => p.Id == id);
     }
 }

@@ -13,6 +13,7 @@ public class MappingProfiles:Profile
         CreateMap<Student,StudentDto>().ReverseMap();
         CreateMap<Subject,SubjectDto>().ReverseMap();
         CreateMap<Teacher,TeacherDto>().ReverseMap();
+        CreateMap<Role,RoleDto>().ReverseMap();
         CreateMap<User,UserDto>().ReverseMap();
     }
     
